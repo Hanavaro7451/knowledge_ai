@@ -1,0 +1,81 @@
+[project]
+name = "knowledge-ai"
+version = "0.1.0"
+description = "AI-powered document knowledge platform based on RAG"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+
+dependencies = [
+    # Backend
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "pydantic-settings",
+    "python-multipart",
+    "email-validator",
+
+    # Database
+    "sqlalchemy[asyncio]>=2.0,<3.0",
+    "asyncpg",
+    "alembic",
+    "pgvector",
+
+    # Authentication
+    "pyjwt",
+    "pwdlib[argon2]",
+
+    # Background tasks and cache
+    "celery[redis]",
+    "redis",
+
+    # Object storage
+    "minio",
+
+    # PDF processing
+    "pymupdf",
+
+    # AI / LLM
+    "ollama",
+    "httpx",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "testcontainers",
+    "ruff",
+    "mypy",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "UP",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+asyncio_mode = "auto"
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+warn_return_any = true
+warn_unused_configs = true
+check_untyped_defs = true
