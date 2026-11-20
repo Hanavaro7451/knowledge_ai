@@ -9,8 +9,8 @@ class Settings(BaseSettings):
     app_debug: bool = True
     app_host: str = "0.0.0.0"
     app_port: int = 8080
-    db_host: str = "localhost"
-    PG_PORT: int = Field(ge=1, le=65535)
+    POSTGRES_HOST: str = "localhost"
+    POSTGRES_PORT: int = Field(ge=1, le=65535)
     POSTGRES_USER: str = Field(min_length=1)
     POSTGRES_PASSWORD: str = Field(min_length=1)
     POSTGRES_DB: str = Field(min_length=1)
